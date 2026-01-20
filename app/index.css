@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+  p {
+    @apply text-base sm:text-lg
+  }
+
+  p code {
+    @apply text-lime-600
+  }
+}
+
+@theme {
+  --breakpoint-xs: 500px;
+}
