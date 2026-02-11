@@ -10,7 +10,7 @@ JavaScript arrays can store many different data types, but for consistency, myNu
 
 ## Usage
 
-You can test the application using ```npm run dev```. Vite will open it in your browser using a local host. Then, simply follow the instructions to create your number array and test out different methods on it!
+You can test the application using `npm run dev`. Vite will open it in your browser using a local host. Then, simply follow the instructions to create your number array and test out different methods on it!
 
 ![screenshot of array creation](./public/create-new-array.png)
 

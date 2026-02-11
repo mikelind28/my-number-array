@@ -1,13 +1,15 @@
+import { Link } from "react-router";
+
 export default function Header() {
-    return (
-        <header
-            className="px-4 py-2"
-        >
-            <h1
-                className="text-2xl text-lime-200 font-mono font-bold underline"
-            >
-                myNumberArray: number[]
-            </h1>
-        </header>
-    );
+  return (
+    <header>
+      <Link
+        to='/'
+      >
+        <h1 className="text-center font-mono text-2xl text-lime-200">
+          myNumberArray: number[]
+        </h1>
+      </Link>
+    </header>
+  );
 }

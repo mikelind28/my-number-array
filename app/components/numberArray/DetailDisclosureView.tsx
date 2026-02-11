@@ -1,168 +1,105 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { AnimatePresence, motion } from "motion/react";
+import { type ReactNode } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 type DetailElementProps = {
-    textContent: string;
-    url: string;
-    children: ReactNode;
+  textContent: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  children?: ReactNode;
 };
 
-function DetailElement({ textContent, url, children }: DetailElementProps) {
-    const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
+function DetailElement({ textContent, isOpen, onToggle, children }: DetailElementProps) {
+  function handleClick(e: React.MouseEvent) {
+    e.preventDefault();
+    onToggle();
+  }
 
-    useEffect(() => {
-        setIsOpen(location.pathname === `/number-array/methods${url}`);
-    }, [location, url]);
+  return (
+    <details
+      open={isOpen}
+      className={`max-w-220 rounded-md bg-gray-800 p-2 ${isOpen ? "border-2 border-lime-400" : ""}`}
+    >
+      <motion.summary onClick={handleClick} className="mb-1 text-lime-300">
+        <code>{textContent}</code>
+      </motion.summary>
+      
+      <div className="overflow-hidden">
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
 
-    function handleClick(event: React.MouseEvent) {
-        event.preventDefault();
-        if (isOpen) {
-            navigate("/number-array/methods");
-        } else {
-            navigate(`/number-array/methods${url}`);
-        }
-    }
-    
-    return (
-        <details 
-            open={isOpen}
-            className={`max-w-full p-2 bg-gray-800 rounded-md ${isOpen ? "border-2 border-lime-400" : ""}`}
-        >
-            <summary 
-                onClick={handleClick}
-                className="text-lime-300 mb-1"
+              key="content"
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-sm bg-gray-900/70 p-4 text-lime-300"
             >
-                <code>
-                    {textContent}
-                </code>
-            </summary>
-            <div className="bg-gray-900/70 rounded-sm p-4 text-lime-300">
-                { isOpen && children}
-            </div>
-        </details>
-    );
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </details>
+  );
 }
 
-// { children } is the React Router <Outlet />, passed to DetailDisclosureView from NumberMethodsHome, and will conditionally display whichever element is associated with the given url
-export default function DetailDisclosureView({ children }: { children: ReactNode}) {
-    return (
-        <div className="max-w-full flex flex-col gap-2">
-            <DetailElement textContent="Welcome!" url="">
-                {/* <Welcome /> */}
-                {children}
-            </DetailElement>
+const pathBase = "/number-array/methods";
 
-            <DetailElement textContent=".at()" url="/at">
-                {/* <At /> */}
-                {children}
-            </DetailElement>
+const methods = [
+  { textContent: "Welcome!", url: "" },
+  { textContent: ".at()", url: "/at" },
+  { textContent: ".concat()", url: "/concat" },
+  { textContent: ".copyWithin()", url: "/copy-within" },
+  { textContent: ".every()", url: "/every" },
+  { textContent: ".fill()", url: "/fill" },
+  { textContent: ".filter()", url: "/filter" },
+  { textContent: ".find()", url: "/find" },
+  { textContent: ".findLast()", url: "/find-last" },
+  { textContent: ".includes()", url: "/includes" },
+  { textContent: ".join()", url: "/join" },
+  { textContent: ".map()", url: "/map" },
+  { textContent: ".pop()", url: "/pop" },
+  { textContent: ".push()", url: "/push" },
+  { textContent: ".reduce()", url: "/reduce" },
+  { textContent: ".reverse()", url: "/reverse" },
+  { textContent: ".shift()", url: "/shift" },
+  { textContent: ".slice()", url: "/slice" },
+  { textContent: ".some()", url: "/some" },
+  { textContent: ".sort()", url: "/sort" },
+  { textContent: ".splice()", url: "/splice" },
+  { textContent: ".unshift()", url: "/unshift" },
+  { textContent: ".with()", url: "/with" },
+] as const;
 
-            <DetailElement textContent=".concat()" url="/concat">
-                {/* <Concat /> */}
-                {children}
-            </DetailElement>
+export default function DetailDisclosureView() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-            <DetailElement textContent=".copyWithin()" url="/copy-within">
-                {/* <CopyWithin /> */}
-                {children}
-            </DetailElement>
+  const activePath = location.pathname.startsWith(pathBase)
+    ? location.pathname.slice(pathBase.length)
+    : null
 
-            <DetailElement textContent=".every()" url="/every">
-                {/* <Every /> */}
-                {children}
-            </DetailElement>
+  function handleToggle(url: string) {
+    navigate(activePath === url ? pathBase : `${pathBase}${url}`);
+  }
 
-            <DetailElement textContent=".fill()" url="/fill">
-                {/* <Fill /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".filter()" url="/filter">
-                {/* <Filter /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".find()" url="/find">
-                {/* <Find /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".findLast()" url="/find-last">
-                {/* <FindLast /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".includes()" url="/includes">
-                {/* <Includes /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".join()" url="/join">
-                {/* <Join /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".map()" url="/map">
-                {/* <Map /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".pop()" url="/pop">
-                {/* <Pop /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".push()" url="/push">
-                {/* <Push /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".reduce()" url="/reduce">
-                {/* <Reduce /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".reverse()" url="/reverse">
-                {/* <Reverse /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".shift()" url="/shift">
-                {/* <Shift /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".slice()" url="/slice">
-                {/* <Slice /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".some()" url="/some">
-                {/* <Some /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".sort()" url="/sort">
-                {/* <Sort /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".splice()" url="/splice">
-                {/* <Splice /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".unshift()" url="/unshift">
-                {/* <Unshift /> */}
-                {children}
-            </DetailElement>
-
-            <DetailElement textContent=".with()" url="/with">
-                {/* <With /> */}
-                {children}
-            </DetailElement>
-        </div>
-    );
+  return (
+    <div className="flex w-full max-w-220 flex-col gap-2 md:gap-3">
+      {methods.map(({ textContent, url }) => {
+        const isOpen = activePath === url;
+        return (
+          <DetailElement
+            key={url}
+            textContent={textContent}
+            isOpen={isOpen}
+            onToggle={() => handleToggle(url)}
+          >
+            {isOpen && <Outlet />}
+          </DetailElement>
+        );
+      })}
+    </div>
+  );
 }

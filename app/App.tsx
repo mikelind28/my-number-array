@@ -3,9 +3,9 @@ import { Outlet } from "react-router";
 
 export default function App() {
   return (
-    <div className="min-w-[340px] max-w-screen">
+    <div className="p-4 flex flex-col gap-4 min-w-85">
       <Header />
       <Outlet />
     </div>
-  )
+  );
 }
