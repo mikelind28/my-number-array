@@ -119,15 +119,25 @@ export default function CreateNumberArray() {
             ))}
 
             <div className="flex gap-1 sm:my-2">
-                <CiCirclePlus
-                onClick={addItem}
-                className={`text-6xl ${itemsLength < 10 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-                />
+                <button 
+                  type='button'
+                  onClick={addItem}
+                  disabled={itemsLength >= 10}
+                >
+                  <CiCirclePlus
+                    className={`text-6xl ${itemsLength < 10 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+                  />
+                </button>
 
-                <CiCircleMinus
-                onClick={removeItem}
-                className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-                />
+                <button
+                  type='button'
+                  onClick={removeItem}
+                  disabled={itemsLength <= 0}
+                >
+                  <CiCircleMinus
+                    className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+                  />
+                </button>
             </div>
 
             <div className="w-fit">

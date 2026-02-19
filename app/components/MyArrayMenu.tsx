@@ -33,15 +33,14 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
           </ButtonWrapper>
         </Link>
 
-        <ButtonWrapper disabled={false}>
-          <div className="flex items-center justify-between">
-            <Link to="/number-array/methods" className="text-lg">
+        <Link to="/number-array/methods" className="text-lg">
+          <ButtonWrapper disabled={false}>
+            <div className="flex items-center justify-between">
               Explore array methods
-            </Link>
-
-            <RiParenthesesFill className="size-5" />
-          </div>
-        </ButtonWrapper>
+              <RiParenthesesFill className="size-5" />
+            </div>
+          </ButtonWrapper>
+        </Link>
 
         <div onClick={clearFromStorage}>
           <ButtonWrapper disabled={array.length === 0}>

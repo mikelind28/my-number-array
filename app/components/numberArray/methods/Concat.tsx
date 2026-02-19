@@ -93,18 +93,6 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
         Add up to 5 numbers to create <code>myNumberArray2:</code>
       </h2>
 
-      <div className="mt-2 mb-4 flex gap-3">
-        <CiCirclePlus
-          onClick={addItem}
-          className={`text-6xl ${itemsLength < 5 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-        />
-
-        <CiCircleMinus
-          onClick={removeItem}
-          className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-        />
-      </div>
-
       <form
         ref={formRef}
         onInput={() => {
@@ -117,6 +105,28 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
           ))}
         </ol>
 
+        <div className="mt-2 mb-4 flex gap-2">
+          <button 
+            type='button'
+            onClick={addItem}
+            disabled={itemsLength >= 5}
+          >
+            <CiCirclePlus
+              className={`text-6xl ${itemsLength < 5 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+            />
+          </button>
+
+          <button
+            type='button'
+            onClick={removeItem}
+            disabled={itemsLength <= 0}
+          >
+            <CiCircleMinus
+              className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+            />
+          </button>
+        </div>
+
         <div className="mt-4 w-fit">
           <ButtonWrapper disabled={!formValid}>
             <input
@@ -124,6 +134,7 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
               value="Concat them!"
               disabled={!formValid}
               onClick={handleSubmit}
+              className={formValid ? 'cursor-pointer' : 'cursor-default'}
             />
           </ButtonWrapper>
         </div>

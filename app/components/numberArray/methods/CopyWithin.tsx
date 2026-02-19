@@ -138,7 +138,7 @@ export default function CopyWithin() {
         </div>
         <code>)</code>
 
-        <div onClick={handleCopyWithin} className="my-2 w-fit">
+        <button type='button' onClick={handleCopyWithin} className="my-2 w-fit">
           <ButtonWrapper
             disabled={
               !targetInputValueValid ||
@@ -148,7 +148,7 @@ export default function CopyWithin() {
           >
             <p>Copy Within myNumberArray!</p>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue && (

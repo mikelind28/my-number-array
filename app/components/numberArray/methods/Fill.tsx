@@ -135,7 +135,7 @@ export default function Fill() {
         </div>
         <code>)</code>
 
-        <div onClick={handleFill} className="my-2 w-fit">
+        <button type='button' onClick={handleFill} className="my-2 w-fit">
           <ButtonWrapper
             disabled={
               !valueInputValueValid ||
@@ -145,7 +145,7 @@ export default function Fill() {
           >
             <p>Fill myNumberArray!</p>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue && (
