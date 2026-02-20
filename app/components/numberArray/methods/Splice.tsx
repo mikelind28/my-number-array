@@ -243,32 +243,40 @@ export default function Splice() {
               className="w-32 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
             />
             ,
-            <div
+            <button
               className="hover:cursor-pointer"
               onClick={() => setInfinityTrue(!infinityTrue)}
             >
               <ButtonWrapper disabled={false}>
                 {`${infinityTrue ? "Remove Infinity" : "Use Infinity"}`}
               </ButtonWrapper>
-            </div>
+            </button>
           </div>
         )}
 
         <div className="mb-1 flex items-center gap-1">
-          <CiCirclePlus
+          <button 
+            type='button'
             onClick={() => {
-              setDeleteCountPresent(true);
-            }}
-            className={`shrink-0 text-4xl ${!deleteCountPresent ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-          />
+                setDeleteCountPresent(true);
+              }}
+          >
+            <CiCirclePlus
+              className={`shrink-0 text-4xl ${!deleteCountPresent ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
+            />
+          </button>
 
-          <CiCircleMinus
+          <button
+            type='button'
             onClick={() => {
               setDeleteCountPresent(false);
               setItemsLength(0);
             }}
-            className={`shrink-0 text-4xl ${deleteCountPresent ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-          />
+          >
+            <CiCircleMinus
+              className={`shrink-0 text-4xl ${deleteCountPresent ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
+            />
+          </button>
 
           <p className="italic">{`${deleteCountPresent ? "(Remove deleteCount from the array)" : "(Add a deleteCount to the array)"}`}</p>
         </div>
@@ -294,15 +302,23 @@ export default function Splice() {
 
         {deleteCountPresent && (
           <div className="mb-1 flex items-center gap-1">
-            <CiCirclePlus
+            <button
+              type='button'
               onClick={addItem}
-              className={`shrink-0 text-4xl ${deleteCountPresent && itemsLength < 5 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-            />
+            >
+              <CiCirclePlus
+                className={`shrink-0 text-4xl ${deleteCountPresent && itemsLength < 5 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
+              />
+            </button>
 
-            <CiCircleMinus
+            <button
+              type='button'
               onClick={removeItem}
-              className={`shrink-0 text-4xl ${itemsLength > 0 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
-            />
+            >
+              <CiCircleMinus
+                className={`shrink-0 text-4xl ${itemsLength > 0 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
+              />
+            </button>
 
             <p className="italic">(Add items to the array)</p>
           </div>
@@ -312,7 +328,7 @@ export default function Splice() {
           <code>)</code>
         </div>
 
-        <div onClick={spliceMyNumberArray} className="w-fit">
+        <button type='button' onClick={spliceMyNumberArray} className="w-fit">
           <ButtonWrapper
             disabled={
               !startInputValueValid ||
@@ -322,7 +338,7 @@ export default function Splice() {
           >
             Click here to splice it!
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue.length > 0 && (

@@ -42,14 +42,14 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
           </ButtonWrapper>
         </Link>
 
-        <div onClick={clearFromStorage}>
+        <button type='button' onClick={clearFromStorage} className="text-lg">
           <ButtonWrapper disabled={array.length === 0}>
             <div className="flex items-center justify-between">
-              <p className="text-lg">Clear myNumberArray</p>
+              Clear myNumberArray
               <FaTrashAlt className="size-5" />
             </div>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
     </div>
   );

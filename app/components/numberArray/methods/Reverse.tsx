@@ -31,11 +31,11 @@ export default function Reverse() {
       <div className="my-2 rounded-sm bg-gray-950/75 p-2">
         Click the button to reverse <code>myNumberArray</code> and see the
         return value!
-        <div onClick={handleReverse} className="my-2 w-fit">
+        <button type='button' onClick={handleReverse} className="my-2 w-fit">
           <ButtonWrapper disabled={false}>
             <code>myNumberArray.reverse()</code>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue !== undefined && (

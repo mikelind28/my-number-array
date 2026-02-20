@@ -27,11 +27,11 @@ export default function Pop() {
       <div className="my-2 rounded-sm bg-gray-950/75 p-2">
         Click the button to modify <code>myNumberArray</code> and see the return
         value!
-        <div onClick={handlePop} className="my-2 w-fit">
+        <button type='button' onClick={handlePop} className="my-2 w-fit">
           <ButtonWrapper disabled={false}>
             <code>myNumberArray.pop()</code>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue !== undefined && (

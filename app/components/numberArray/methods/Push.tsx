@@ -83,11 +83,11 @@ export default function Push() {
             </div>
           )}
         </div>
-        <div onClick={handlePush} className="my-2 w-fit">
+        <button type='button' onClick={handlePush} className="my-2 w-fit">
           <ButtonWrapper disabled={!inputValueValid}>
             <code>myNumberArray.push(value)</code>
           </ButtonWrapper>
-        </div>
+        </button>
       </div>
 
       {returnValue !== undefined && (
