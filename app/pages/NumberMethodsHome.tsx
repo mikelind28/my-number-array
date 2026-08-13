@@ -20,7 +20,7 @@ export default function NumberMethodsHome() {
       <title>myNumberArray | Methods</title>
       <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
       <main
-        className="min-w-0 flex flex-col items-start divide-y divide-white/25 bg-slate-950"
+        className="flex min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950"
         style={{ gridArea: "body" }}
       >
         <Breadcrumbs currentPage="Explore array methods" />
@@ -28,7 +28,7 @@ export default function NumberMethodsHome() {
         <motion.div
           layout
           style={{ position: scrollDirection === "up" ? "sticky" : "static" }}
-          className={`min-w-0 max-w-220 lg:border-r lg:border-white/25 top-0 z-20 flex w-full flex-col gap-3 bg-slate-900 p-3 pt-4 pb-7 text-lime-500`}
+          className={`top-0 z-20 flex w-full max-w-220 min-w-0 flex-col gap-3 bg-slate-900 p-3 pt-4 pb-7 text-lime-500 lg:border-r lg:border-white/25`}
         >
           <code className="text-xl text-lime-300">myNumberArray:</code>
           <div className="overflow-x-scroll">

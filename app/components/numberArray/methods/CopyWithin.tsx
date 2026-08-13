@@ -76,7 +76,8 @@ export default function CopyWithin() {
       </p>
 
       <ExampleWrapper>
-        <code>myNumberArray</code><code>.copyWithin(</code>
+        <code>myNumberArray</code>
+        <code>.copyWithin(</code>
         <div className="flex items-baseline gap-x-1">
           <input
             id="copy-within-method-target"
@@ -143,7 +144,9 @@ export default function CopyWithin() {
             style={
               !targetInputValueValid ||
               !startInputValueValid ||
-              !endInputValueValid ? 'disabled' : 'normal'
+              !endInputValueValid
+                ? "disabled"
+                : "normal"
             }
           >
             Copy Within myNumberArray!

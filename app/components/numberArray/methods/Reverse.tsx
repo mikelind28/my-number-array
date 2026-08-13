@@ -30,10 +30,12 @@ export default function Reverse() {
       </p>
 
       <ExampleWrapper>
-        <p>Click the button to reverse <code>myNumberArray</code> and see the
-        return value!</p>
-        <button type='button' onClick={handleReverse} className="my-2 w-fit">
-          <ButtonWrapper style='normal'>
+        <p>
+          Click the button to reverse <code>myNumberArray</code> and see the
+          return value!
+        </p>
+        <button type="button" onClick={handleReverse} className="my-2 w-fit">
+          <ButtonWrapper style="normal">
             <code>myNumberArray.reverse()</code>
           </ButtonWrapper>
         </button>

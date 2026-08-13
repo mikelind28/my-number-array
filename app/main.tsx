@@ -51,7 +51,7 @@ function storedArrayLoader() {
   }
 }
 
-let router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     Component: App,

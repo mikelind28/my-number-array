@@ -60,15 +60,25 @@ export default function Sort() {
       </p>
 
       <ExampleWrapper>
-        <p>Click a button to modify <code>myNumberArray</code> and see the return
-        value!</p>
-        <button type='button' onClick={handleSortAscending} className="my-2 w-fit">
-          <ButtonWrapper style='normal'>
+        <p>
+          Click a button to modify <code>myNumberArray</code> and see the return
+          value!
+        </p>
+        <button
+          type="button"
+          onClick={handleSortAscending}
+          className="my-2 w-fit"
+        >
+          <ButtonWrapper style="normal">
             <code>{`myNumberArray.sort((a, b) => a - b)`}</code>
           </ButtonWrapper>
         </button>
-        <button type='button' onClick={handleSortDescending} className="my-2 w-fit">
-          <ButtonWrapper style='normal'>
+        <button
+          type="button"
+          onClick={handleSortDescending}
+          className="my-2 w-fit"
+        >
+          <ButtonWrapper style="normal">
             <code>{`myNumberArray.sort((a, b) => b - a)`}</code>
           </ButtonWrapper>
         </button>

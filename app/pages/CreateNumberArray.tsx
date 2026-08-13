@@ -57,7 +57,7 @@ function TableRow({ number }: NumberInputProps) {
 
       <td className="w-full max-w-40 sm:max-w-fit">
         {inputEmpty && (
-          <td className="flex h-full w-full max-w-40 sm:w-40 items-center bg-rose-400 px-2 py-1 text-sm/4.5 text-gray-950">
+          <td className="flex h-full w-full max-w-40 items-center bg-rose-400 px-2 py-1 text-sm/4.5 text-gray-950 sm:w-40">
             Can't be empty!
           </td>
         )}
@@ -98,13 +98,13 @@ export default function CreateNumberArray() {
       <title>myNumberArray | Create New</title>
       <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
       <main
-        className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950 "
+        className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950"
         style={{ gridArea: "body" }}
       >
         <Breadcrumbs currentPage="Create new array" />
 
         <div className="flex w-full md:h-full md:border-b-0">
-          <div className="flex w-full flex-col gap-6 py-7 bg-slate-900 md:border-r md:border-white/25 ">
+          <div className="flex w-full flex-col gap-6 bg-slate-900 py-7 md:border-r md:border-white/25">
             <h1 className="px-3 text-2xl font-light text-lime-300">
               Add up to 10 numbers:
             </h1>
@@ -118,7 +118,7 @@ export default function CreateNumberArray() {
               method="POST"
               className=""
             >
-              <table className="w-full sm:w-fit border-collapse border-spacing-px divide-y divide-white/25 border-y border-white/25 sm:border-r md:border-r-0 md:w-full">
+              <table className="w-full border-collapse border-spacing-px divide-y divide-white/25 border-y border-white/25 sm:w-fit sm:border-r md:w-full md:border-r-0">
                 {Array.from({ length: itemsLength }, (_, i) => (
                   <TableRow number={i + 1} />
                 ))}

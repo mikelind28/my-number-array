@@ -14,7 +14,7 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
   }
 
   return (
-    <div className="min-w-0 xs:p-5 flex h-full w-full flex-col gap-4 bg-slate-900 px-4 py-6 text-lime-500">
+    <div className="xs:p-5 flex h-full w-full min-w-0 flex-col gap-4 bg-slate-900 px-4 py-6 text-lime-500">
       <code className="text-xl text-lime-300">myNumberArray:</code>
 
       <div className="mb-1 overflow-x-auto">

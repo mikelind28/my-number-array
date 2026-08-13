@@ -248,7 +248,7 @@ export default function Splice() {
               className="hover:cursor-pointer"
               onClick={() => setInfinityTrue(!infinityTrue)}
             >
-              <ButtonWrapper style='normal'>
+              <ButtonWrapper style="normal">
                 {`${infinityTrue ? "Remove Infinity" : "Use Infinity"}`}
               </ButtonWrapper>
             </button>
@@ -328,7 +328,9 @@ export default function Splice() {
             style={
               !startInputValueValid ||
               !deleteCountInputValueValid ||
-              !formDataValid ? 'disabled' : 'normal'
+              !formDataValid
+                ? "disabled"
+                : "normal"
             }
           >
             Click here to splice it!

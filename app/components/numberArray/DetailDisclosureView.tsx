@@ -25,9 +25,15 @@ function DetailElement({
   return (
     <details
       open={isOpen}
-      className={`details has-focus-visible:outline-2 has-focus-visible:outline-amber-400 has-focus-visible:z-10 max-w-220 bg-slate-800 ${isOpen ? "rounded-xs border-2 border-lime-400" : ""}`}
+      className={`details max-w-220 bg-slate-800 has-focus-visible:z-10 has-focus-visible:outline-2 has-focus-visible:outline-amber-400 ${isOpen ? "rounded-xs border-2 border-lime-400" : ""}`}
     >
-      <motion.summary onClick={handleClick} className=" text-lime-300 px-3 pt-2 pb-1" style={ isOpen ? {borderBottom: '1px solid rgba(255,255,255,0.25'} : {}}>
+      <motion.summary
+        onClick={handleClick}
+        className="px-3 pt-2 pb-1 text-lime-300"
+        style={
+          isOpen ? { borderBottom: "1px solid rgba(255,255,255,0.25" } : {}
+        }
+      >
         <code className="ml-1 text-lg">{textContent}</code>
       </motion.summary>
 
@@ -39,7 +45,7 @@ function DetailElement({
               animate={{ height: "auto" }}
               exit={{ height: 0 }}
               transition={{ duration: 0.3 }}
-              className="rounded-xs bg-slate-900 md:px-4 px-3 pt-5 pb-8 text-lime-300 flex flex-col gap-3 text-base"
+              className="flex flex-col gap-3 rounded-xs bg-slate-900 px-3 pt-5 pb-8 text-base text-lime-300 md:px-4"
             >
               {children}
             </motion.div>
@@ -91,7 +97,7 @@ export default function DetailDisclosureView() {
   }
 
   return (
-    <div className="flex w-full flex-col gap-px max-w-220 lg:border-r lg:border-white/25 bg-white/25">
+    <div className="flex w-full max-w-220 flex-col gap-px bg-white/25 lg:border-r lg:border-white/25">
       {methods.map(({ textContent, url }) => {
         const isOpen = activePath === url;
         return (

@@ -85,9 +85,10 @@ export default function Push() {
           )}
         </div>
         <button type="button" onClick={handlePush} className="my-2 w-fit">
-          <ButtonWrapper style={!inputValueValid ? 'disabled' : 'normal'}>
+          <ButtonWrapper style={!inputValueValid ? "disabled" : "normal"}>
             <div className="flex flex-wrap">
-              <code>myNumberArray</code><code>.push(value)</code>
+              <code>myNumberArray</code>
+              <code>.push(value)</code>
             </div>
           </ButtonWrapper>
         </button>

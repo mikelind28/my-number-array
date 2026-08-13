@@ -7,9 +7,12 @@ export default function NumberArrayIndex() {
   return (
     <>
       <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
-      <div className="min-w-0 bg-slate-950 flex flex-col divide-y divide-white/25" style={{ gridArea: "body" }} >
+      <div
+        className="flex min-w-0 flex-col divide-y divide-white/25 bg-slate-950"
+        style={{ gridArea: "body" }}
+      >
         <MyArrayMenu array={myNumberArray} />
-        <div className="bg-slate-950 h-full" />
+        <div className="h-full bg-slate-950" />
       </div>
       <div className="bg-slate-950" style={{ gridArea: "body-right" }} />
     </>

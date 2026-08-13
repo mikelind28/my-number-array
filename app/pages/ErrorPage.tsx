@@ -10,16 +10,19 @@ export default function ErrorBoundary() {
       <>
         <Header />
         <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
-        <main className="min-w-0 flex w-full flex-col items-start divide-y divide-white/25 bg-slate-950" style={{ gridArea: "body" }}>
+        <main
+          className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950"
+          style={{ gridArea: "body" }}
+        >
           <Breadcrumbs currentPage="Error!" />
-          <div className="flex flex-col gap-2 m-2 rounded-sm bg-slate-800 p-4">
+          <div className="m-2 flex flex-col gap-2 rounded-sm bg-slate-800 p-4">
             <h1 className="text-2xl text-lime-400">
               Uh oh! Something went wrong:
             </h1>
             <h2 className="text-xl text-amber-500">
               {error.status} {error.statusText}
             </h2>
-            <p className="text-base italic text-blue-300">{error.data}</p>
+            <p className="text-base text-blue-300 italic">{error.data}</p>
           </div>
         </main>
         <div className="bg-slate-950" style={{ gridArea: "body-right" }} />
@@ -30,17 +33,18 @@ export default function ErrorBoundary() {
       <>
         <Header />
         <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
-        <main className="min-w-0 flex w-full flex-col items-start divide-y divide-white/25 bg-slate-950" style={{ gridArea: "body" }}>
+        <main
+          className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950"
+          style={{ gridArea: "body" }}
+        >
           <Breadcrumbs currentPage="Error!" />
-          <div className="flex flex-col gap-2 m-2 rounded-sm bg-slate-800 p-4">
+          <div className="m-2 flex flex-col gap-2 rounded-sm bg-slate-800 p-4">
             <h1 className="text-2xl text-lime-400">
               Uh oh! Something went wrong:
             </h1>
-            <h2 className="text-xl text-amber-500">
-              {error.message}
-            </h2>
+            <h2 className="text-xl text-amber-500">{error.message}</h2>
             <p className="text-lg text-lime-500">The stack trace is:</p>
-            <pre className="text-base italic text-blue-300">{error.stack}</pre>
+            <pre className="text-base text-blue-300 italic">{error.stack}</pre>
           </div>
         </main>
         <div className="bg-slate-950" style={{ gridArea: "body-right" }} />
@@ -51,10 +55,13 @@ export default function ErrorBoundary() {
       <>
         <Header />
         <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
-        <main className="min-w-0 flex w-full flex-col items-start divide-y divide-white/25 bg-slate-950" style={{ gridArea: "body" }}>
+        <main
+          className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950"
+          style={{ gridArea: "body" }}
+        >
           <Breadcrumbs currentPage="Error!" />
-          <div className="flex flex-col gap-2 m-2 rounded-sm bg-slate-800 p-4 w-[calc(100%-16px)]">
-            <h1 className="text-2xl text-lime-300 w-full">Unknown Error</h1>
+          <div className="m-2 flex w-[calc(100%-16px)] flex-col gap-2 rounded-sm bg-slate-800 p-4">
+            <h1 className="w-full text-2xl text-lime-300">Unknown Error</h1>
           </div>
         </main>
         <div className="bg-slate-950" style={{ gridArea: "body-right" }} />

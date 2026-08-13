@@ -25,7 +25,7 @@ export default function Reduce() {
         function as a parameter. This function will evaluate all elements in the
         array, returning a single value.
       </p>
-      
+
       <p>
         Let's say you wanted to get the sum of all elements in an array of
         numbers. Your reducer function would look like this:
@@ -51,7 +51,7 @@ export default function Reduce() {
         <code>accumulator</code> on the next runthrough, with{" "}
         <code>currentValue</code> becoming the next element in the array.
       </p>
-      
+
       <p>
         When the last element in the array is reached, the{" "}
         <code>.reduce()</code> function returns the last returned value of the
@@ -59,7 +59,7 @@ export default function Reduce() {
       </p>
 
       <ExampleWrapper>
-        <div className="h-fit flex flex-wrap">
+        <div className="flex h-fit flex-wrap">
           <code>myNumberArray</code>
           <code>.reduce(addAll)</code>
         </div>

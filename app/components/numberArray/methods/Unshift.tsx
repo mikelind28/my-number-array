@@ -85,7 +85,7 @@ export default function Unshift() {
           )}
         </div>
         <button type="button" onClick={handleUnshift} className="my-2 w-fit">
-          <ButtonWrapper style={!inputValueValid ? 'disabled' : 'normal'}>
+          <ButtonWrapper style={!inputValueValid ? "disabled" : "normal"}>
             <div className="flex flex-wrap">
               <code>myNumberArray</code>
               <code>.unshift(value)</code>

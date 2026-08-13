@@ -26,10 +26,12 @@ export default function Pop() {
       </p>
 
       <ExampleWrapper>
-        <p>Click the button to modify <code>myNumberArray</code> and see the return
-        value!</p>
-        <button type='button' onClick={handlePop} className="my-2 w-fit">
-          <ButtonWrapper style='normal'>
+        <p>
+          Click the button to modify <code>myNumberArray</code> and see the
+          return value!
+        </p>
+        <button type="button" onClick={handlePop} className="my-2 w-fit">
+          <ButtonWrapper style="normal">
             <code>myNumberArray.pop()</code>
           </ButtonWrapper>
         </button>

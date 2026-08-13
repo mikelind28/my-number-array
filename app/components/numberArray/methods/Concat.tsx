@@ -33,11 +33,14 @@ function TableRow({ number }: { number: number }) {
   }, []);
 
   return (
-    <tr className="flex bg-slate-900 divide-x divide-white/25 w-full">
-      <th scope='row' className="bg-slate-900 font-light px-2 py-1 min-w-10 text-xl text-lime-200">
+    <tr className="flex w-full divide-x divide-white/25 bg-slate-900">
+      <th
+        scope="row"
+        className="min-w-10 bg-slate-900 px-2 py-1 text-xl font-light text-lime-200"
+      >
         {number}.
       </th>
-      <td className="min-w-20 max-w-40 w-full ">
+      <td className="w-full max-w-40 min-w-20">
         <input
           ref={inputRef}
           id={`numberInputConcat-${number}`}
@@ -48,19 +51,19 @@ function TableRow({ number }: { number: number }) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           required
-          className="w-full h-full bg-slate-100 px-2 py-1 text-xl font-light text-lime-800 invalid:border-2 invalid:border-rose-500 focus-visible:outline-lime-700 focus-visible:z-10"
+          className="h-full w-full bg-slate-100 px-2 py-1 text-xl font-light text-lime-800 invalid:border-2 invalid:border-rose-500 focus-visible:z-10 focus-visible:outline-lime-700"
         />
       </td>
 
-      <td className="max-w-40 w-full">
+      <td className="w-full max-w-40">
         {inputEmpty && (
-          <div className="bg-rose-400 px-2 py-1 flex h-full items-center w-full text-xs/4.5 text-gray-950">
+          <div className="flex h-full w-full items-center bg-rose-400 px-2 py-1 text-xs/4.5 text-gray-950">
             Can't be empty!
           </div>
         )}
 
         {inputOutOfRange && (
-          <div className="bg-rose-400 px-2 py-1 flex h-full items-center w-full text-xs/4.5 text-gray-950">
+          <div className="flex h-full w-full items-center bg-rose-400 px-2 py-1 text-xs/4.5 text-gray-950">
             Must be from -10,000 to 10,000.
           </div>
         )}
@@ -104,7 +107,7 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
           setFormValid(formRef.current?.checkValidity());
         }}
       >
-        <table className="w-full border-collapse border border-white/25 border-spacing-px divide-y divide-white/25">
+        <table className="w-full border-collapse border-spacing-px divide-y divide-white/25 border border-white/25">
           {Array.from({ length: itemsLength }, (_, i) => (
             <TableRow key={i + 1} number={i + 1} />
           ))}
@@ -129,7 +132,7 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
         </div>
 
         <div className="mt-4 w-fit">
-          <ButtonWrapper style={!formValid ? 'disabled' : 'normal'}>
+          <ButtonWrapper style={!formValid ? "disabled" : "normal"}>
             <input
               type="button"
               value="Concat them!"

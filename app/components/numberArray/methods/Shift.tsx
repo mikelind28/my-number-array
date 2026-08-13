@@ -27,10 +27,12 @@ export default function Shift() {
       </p>
 
       <ExampleWrapper>
-        <p>Click the button to modify <code>myNumberArray</code> and see the return
-        value!</p>
-        <button type='button' onClick={handleShift} className="my-2 w-fit">
-          <ButtonWrapper style='normal'>
+        <p>
+          Click the button to modify <code>myNumberArray</code> and see the
+          return value!
+        </p>
+        <button type="button" onClick={handleShift} className="my-2 w-fit">
+          <ButtonWrapper style="normal">
             <code>myNumberArray.shift()</code>
           </ButtonWrapper>
         </button>

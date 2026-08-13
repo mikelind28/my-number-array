@@ -7,9 +7,9 @@ export default function App() {
       <Header />
       <Outlet />
       {/* footer grid */}
-      <div className="bg-slate-950" style={{ gridArea: "footer-left"}} />
-      <div className="bg-slate-950" style={{ gridArea: "footer"}} />
-      <div className="bg-slate-950" style={{ gridArea: "footer-right"}} />
+      <div className="bg-slate-950" style={{ gridArea: "footer-left" }} />
+      <div className="bg-slate-950" style={{ gridArea: "footer" }} />
+      <div className="bg-slate-950" style={{ gridArea: "footer-right" }} />
     </>
   );
 }

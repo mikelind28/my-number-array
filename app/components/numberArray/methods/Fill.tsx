@@ -141,7 +141,9 @@ export default function Fill() {
             style={
               !valueInputValueValid ||
               !startInputValueValid ||
-              !endInputValueValid ? 'disabled' : 'normal'
+              !endInputValueValid
+                ? "disabled"
+                : "normal"
             }
           >
             Fill myNumberArray!
