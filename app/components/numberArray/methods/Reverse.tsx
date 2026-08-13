@@ -2,6 +2,7 @@ import { useState } from "react";
 import ButtonWrapper from "../../ButtonWrapper";
 import { useLoaderData, useRevalidator } from "react-router";
 import MyArray from "../../MyArrayTable";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function Reverse() {
   const myNumberArray = useLoaderData();
@@ -28,15 +29,15 @@ export default function Reverse() {
         the now-reversed original array.
       </p>
 
-      <div className="my-2 rounded-sm bg-gray-950/75 p-2">
-        Click the button to reverse <code>myNumberArray</code> and see the
-        return value!
+      <ExampleWrapper>
+        <p>Click the button to reverse <code>myNumberArray</code> and see the
+        return value!</p>
         <button type='button' onClick={handleReverse} className="my-2 w-fit">
-          <ButtonWrapper disabled={false}>
+          <ButtonWrapper style='normal'>
             <code>myNumberArray.reverse()</code>
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue !== undefined && (
         <div className="w-full overflow-x-scroll">

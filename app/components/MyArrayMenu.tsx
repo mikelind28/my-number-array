@@ -14,19 +14,17 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
   }
 
   return (
-    <div className="h-full w-full flex flex-col gap-4 rounded-md bg-gray-800 p-4 text-lime-500 xs:p-5 sm:px-8">
-      <p className="font-mono text-xl text-lime-300">
-        myNumberArray: number[]
-      </p>
+    <div className="min-w-0 xs:p-5 flex h-full w-full flex-col gap-4 bg-slate-900 px-4 py-6 text-lime-500">
+      <code className="text-xl text-lime-300">myNumberArray:</code>
 
       <div className="mb-1 overflow-x-auto">
         <MyArrayTable array={array} />
       </div>
 
-      <div className="flex min-w-70 w-full max-w-80 flex-col gap-2">
+      <div className="flex w-full max-w-80 flex-col gap-2">
         <Link to="/number-array/create" className="text-lg">
-          <ButtonWrapper disabled={false}>
-            <div className="flex gap-1 items-center justify-between">
+          <ButtonWrapper style="normal">
+            <div className="flex items-center justify-between gap-1">
               Create a new number array
               <MdDataArray className="size-5" />
             </div>
@@ -34,7 +32,7 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
         </Link>
 
         <Link to="/number-array/methods" className="text-lg">
-          <ButtonWrapper disabled={false}>
+          <ButtonWrapper style="yellow">
             <div className="flex items-center justify-between">
               Explore array methods
               <RiParenthesesFill className="size-5" />
@@ -42,8 +40,8 @@ export default function MyArrayMenu({ array }: { array: number[] }) {
           </ButtonWrapper>
         </Link>
 
-        <button type='button' onClick={clearFromStorage} className="text-lg">
-          <ButtonWrapper disabled={array.length === 0}>
+        <button type="button" onClick={clearFromStorage} className="text-lg">
+          <ButtonWrapper style={array.length === 0 ? "disabled" : "warning"}>
             <div className="flex items-center justify-between">
               Clear myNumberArray
               <FaTrashAlt className="size-5" />

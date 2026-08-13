@@ -3,12 +3,13 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import ButtonWrapper from "../../ButtonWrapper";
 import MyArray from "../../MyArrayTable";
 import { useLoaderData } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 type CreateNumberArray2Type = {
   setMyNumberArray2: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-function NumberInput({ id }: { id: number }) {
+function TableRow({ number }: { number: number }) {
   const [input, setInput] = useState("");
   const [inputEmpty, setInputEmpty] = useState<boolean | undefined>(true);
   const [inputOutOfRange, setInputOutOfRange] = useState<boolean | undefined>(
@@ -32,35 +33,39 @@ function NumberInput({ id }: { id: number }) {
   }, []);
 
   return (
-    <li className="mx-1 my-1 pl-2">
-      <title>myNumberArray | .concat() Method</title>
-      <div className="flex items-center gap-2">
+    <tr className="flex bg-slate-900 divide-x divide-white/25 w-full">
+      <th scope='row' className="bg-slate-900 font-light px-2 py-1 min-w-10 text-xl text-lime-200">
+        {number}.
+      </th>
+      <td className="min-w-20 max-w-40 w-full ">
         <input
           ref={inputRef}
-          id={`numberInputConcat-${id}`}
-          name={`numberInputConcat-${id}`}
+          id={`numberInputConcat-${number}`}
+          name={`numberInputConcat-${number}`}
           type="number"
           min={-10000}
           max={10000}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           required
-          className="w-fit rounded-sm bg-gray-50 px-2 py-1 font-light text-lime-800 invalid:border-2 invalid:border-red-400 focus:outline-lime-700"
+          className="w-full h-full bg-slate-100 px-2 py-1 text-xl font-light text-lime-800 invalid:border-2 invalid:border-rose-500 focus-visible:outline-lime-700 focus-visible:z-10"
         />
+      </td>
 
+      <td className="max-w-40 w-full">
         {inputEmpty && (
-          <div className="rounded-sm bg-red-400 px-2 py-1 text-base text-gray-950">
+          <div className="bg-rose-400 px-2 py-1 flex h-full items-center w-full text-xs/4.5 text-gray-950">
             Can't be empty!
           </div>
         )}
 
         {inputOutOfRange && (
-          <div className="rounded-sm bg-red-400 px-2 py-1 text-base leading-5 text-gray-950">
+          <div className="bg-rose-400 px-2 py-1 flex h-full items-center w-full text-xs/4.5 text-gray-950">
             Must be from -10,000 to 10,000.
           </div>
         )}
-      </div>
-    </li>
+      </td>
+    </tr>
   );
 }
 
@@ -89,9 +94,9 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
 
   return (
     <>
-      <h2 className="text-lg leading-6 font-light text-lime-300">
+      <p className="text-lg leading-6 font-light text-lime-300">
         Add up to 5 numbers to create <code>myNumberArray2:</code>
-      </h2>
+      </p>
 
       <form
         ref={formRef}
@@ -99,42 +104,38 @@ function CreateNumberArray2({ setMyNumberArray2 }: CreateNumberArray2Type) {
           setFormValid(formRef.current?.checkValidity());
         }}
       >
-        <ol className="m-2 ml-10 flex list-decimal flex-col gap-2 text-2xl text-lime-300">
+        <table className="w-full border-collapse border border-white/25 border-spacing-px divide-y divide-white/25">
           {Array.from({ length: itemsLength }, (_, i) => (
-            <NumberInput key={i + 1} id={i + 1} />
+            <TableRow key={i + 1} number={i + 1} />
           ))}
-        </ol>
+        </table>
 
         <div className="mt-2 mb-4 flex gap-2">
-          <button 
-            type='button'
-            onClick={addItem}
-            disabled={itemsLength >= 5}
-          >
+          <button type="button" onClick={addItem} disabled={itemsLength >= 5}>
             <CiCirclePlus
-              className={`text-6xl ${itemsLength < 5 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+              className={`text-6xl ${itemsLength < 5 ? "cursor-pointer bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
             />
           </button>
 
           <button
-            type='button'
+            type="button"
             onClick={removeItem}
             disabled={itemsLength <= 0}
           >
             <CiCircleMinus
-              className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+              className={`text-6xl ${itemsLength > 1 ? "cursor-pointer bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
             />
           </button>
         </div>
 
         <div className="mt-4 w-fit">
-          <ButtonWrapper disabled={!formValid}>
+          <ButtonWrapper style={!formValid ? 'disabled' : 'normal'}>
             <input
               type="button"
               value="Concat them!"
               disabled={!formValid}
               onClick={handleSubmit}
-              className={formValid ? 'cursor-pointer' : 'cursor-default'}
+              className={formValid ? "cursor-pointer" : "cursor-default"}
             />
           </ButtonWrapper>
         </div>
@@ -149,17 +150,18 @@ export default function Concat() {
 
   return (
     <>
+      <title>myNumberArray | .concat() Method</title>
       <p>
         The <code>.concat()</code> array method merges two or more arrays, and
         returns the newly-merged array without modifying the original.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-3">
+      <ExampleWrapper>
         <CreateNumberArray2 setMyNumberArray2={setMyNumberArray2} />
-      </div>
+      </ExampleWrapper>
       {myNumberArray2.length > 0 ? (
         <div className="flex flex-col">
-          <div className="mb-3 flex flex-wrap items-baseline gap-x-1 leading-5">
+          <div className="mb-3 flex flex-wrap items-baseline gap-x-1 leading-6">
             <p className="flex flex-wrap">
               <code>myNumberArray.</code>
               <code>concat(myNumberArray2)</code>

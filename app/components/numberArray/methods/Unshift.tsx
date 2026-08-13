@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ButtonWrapper from "../../ButtonWrapper";
 import { useLoaderData, useRevalidator } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 // TODO: add ability to increase number of parameters (see splice for example)
 export default function Unshift() {
@@ -44,11 +45,11 @@ export default function Unshift() {
         modifies the original array and returns its new length.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-2">
-        <div className="flex flex-wrap gap-x-2">
+      <ExampleWrapper>
+        <p className="flex flex-wrap gap-x-2">
           Click the button to modify <code>myNumberArray</code> and see the
           return value!
-        </div>
+        </p>
 
         <label htmlFor="push-method-value">Value to push:</label>
 
@@ -68,30 +69,30 @@ export default function Unshift() {
               setInputValueValid(e.target.checkValidity());
               setInputValue(e.target.value);
             }}
-            className="w-24 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-24 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
 
           {inputEmpty && (
-            <div className="rounded-sm bg-red-400 px-2 py-1 text-base text-gray-950">
+            <div className="rounded-sm bg-rose-400 px-2 py-1 text-base text-gray-950">
               Can't be empty!
             </div>
           )}
 
           {inputOutOfRange && (
-            <div className="rounded-sm bg-red-400 px-2 py-1 text-base leading-5 text-gray-950">
+            <div className="rounded-sm bg-rose-400 px-2 py-1 text-base leading-5 text-gray-950">
               Must be from -10,000 to 10,000.
             </div>
           )}
         </div>
-        <button type='button' onClick={handleUnshift} className="my-2 w-fit">
-          <ButtonWrapper disabled={!inputValueValid}>
+        <button type="button" onClick={handleUnshift} className="my-2 w-fit">
+          <ButtonWrapper style={!inputValueValid ? 'disabled' : 'normal'}>
             <div className="flex flex-wrap">
               <code>myNumberArray</code>
               <code>.unshift(value)</code>
             </div>
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue !== undefined && (
         <>

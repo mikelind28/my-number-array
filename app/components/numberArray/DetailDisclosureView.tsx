@@ -9,7 +9,14 @@ type DetailElementProps = {
   children?: ReactNode;
 };
 
-function DetailElement({ textContent, isOpen, onToggle, children }: DetailElementProps) {
+// TODO: indicate whether the method modifies the original array, or returns a new one — i.e., in the <summary>, indicate the return value's type.
+// TODO?: clearly show the methods' inputs and their types?
+function DetailElement({
+  textContent,
+  isOpen,
+  onToggle,
+  children,
+}: DetailElementProps) {
   function handleClick(e: React.MouseEvent) {
     e.preventDefault();
     onToggle();
@@ -18,23 +25,21 @@ function DetailElement({ textContent, isOpen, onToggle, children }: DetailElemen
   return (
     <details
       open={isOpen}
-      className={`max-w-220 rounded-md bg-gray-800 p-2 ${isOpen ? "border-2 border-lime-400" : ""}`}
+      className={`details has-focus-visible:outline-2 has-focus-visible:outline-amber-400 has-focus-visible:z-10 max-w-220 bg-slate-800 ${isOpen ? "rounded-xs border-2 border-lime-400" : ""}`}
     >
-      <motion.summary onClick={handleClick} className="mb-1 text-lime-300">
-        <code>{textContent}</code>
+      <motion.summary onClick={handleClick} className=" text-lime-300 px-3 pt-2 pb-1" style={ isOpen ? {borderBottom: '1px solid rgba(255,255,255,0.25'} : {}}>
+        <code className="ml-1 text-lg">{textContent}</code>
       </motion.summary>
-      
+
       <div className="overflow-hidden">
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.div
-
-              key="content"
               initial={{ height: 0 }}
               animate={{ height: "auto" }}
               exit={{ height: 0 }}
               transition={{ duration: 0.3 }}
-              className="rounded-sm bg-gray-900/70 p-4 text-lime-300"
+              className="rounded-xs bg-slate-900 md:px-4 px-3 pt-5 pb-8 text-lime-300 flex flex-col gap-3 text-base"
             >
               {children}
             </motion.div>
@@ -79,14 +84,14 @@ export default function DetailDisclosureView() {
 
   const activePath = location.pathname.startsWith(pathBase)
     ? location.pathname.slice(pathBase.length)
-    : null
+    : null;
 
   function handleToggle(url: string) {
     navigate(activePath === url ? pathBase : `${pathBase}${url}`);
   }
 
   return (
-    <div className="flex w-full max-w-220 flex-col gap-2 md:gap-3">
+    <div className="flex w-full flex-col gap-px max-w-220 lg:border-r lg:border-white/25 bg-white/25">
       {methods.map(({ textContent, url }) => {
         const isOpen = activePath === url;
         return (

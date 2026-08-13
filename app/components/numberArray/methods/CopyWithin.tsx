@@ -2,6 +2,7 @@ import { useState } from "react";
 import MyArray from "../../MyArrayTable";
 import { useLoaderData, useRevalidator } from "react-router";
 import ButtonWrapper from "../../ButtonWrapper";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function CopyWithin() {
   const myNumberArray = useLoaderData();
@@ -69,14 +70,13 @@ export default function CopyWithin() {
         them to the <code>target</code> index, replacing the existing items. It
         modifies the original array and returns it.
       </p>
-      <br />
       <p>
         The <code>end</code> parameter is optional—if omitted, all elements
         until the end of the array will be copied.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-3">
-        <code>myNumberArray.copyWithin(</code>
+      <ExampleWrapper>
+        <code>myNumberArray</code><code>.copyWithin(</code>
         <div className="flex items-baseline gap-x-1">
           <input
             id="copy-within-method-target"
@@ -91,7 +91,7 @@ export default function CopyWithin() {
               setTargetInputValueValid(e.target.checkValidity());
               setTargetInputValue(e.target.value);
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
@@ -110,7 +110,7 @@ export default function CopyWithin() {
               setStartInputValueValid(e.target.checkValidity());
               setStartInputValue(e.target.value);
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
@@ -132,24 +132,24 @@ export default function CopyWithin() {
                 setEndInputValue(undefined);
               }
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
         <code>)</code>
 
-        <button type='button' onClick={handleCopyWithin} className="my-2 w-fit">
+        <button type="button" onClick={handleCopyWithin} className="my-2 w-fit">
           <ButtonWrapper
-            disabled={
+            style={
               !targetInputValueValid ||
               !startInputValueValid ||
-              !endInputValueValid
+              !endInputValueValid ? 'disabled' : 'normal'
             }
           >
-            <p>Copy Within myNumberArray!</p>
+            Copy Within myNumberArray!
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue && (
         <>

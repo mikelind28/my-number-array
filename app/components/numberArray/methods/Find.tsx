@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function Find() {
   const myNumberArray = useLoaderData();
@@ -55,7 +56,7 @@ export default function Find() {
         <code>undefined</code>.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-2">
+      <ExampleWrapper>
         <div className="flex flex-wrap items-baseline leading-6">
           <code>myNumberArray.find(</code>
           <code>(value){` => {`}</code>
@@ -85,10 +86,10 @@ export default function Find() {
               setInputValueValid(e.target.checkValidity());
               setInputValue(e.target.value);
             }}
-            className="w-16 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-16 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
         </div>
-      </div>
+      </ExampleWrapper>
 
       <p className="mb-2">returns:</p>
       <div className="w-fit rounded-md bg-lime-950 px-2 py-1">

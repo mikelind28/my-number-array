@@ -3,6 +3,7 @@ import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { useLoaderData, useRevalidator } from "react-router";
 import ButtonWrapper from "../../ButtonWrapper";
 import MyArray from "../../MyArrayTable";
+import ExampleWrapper from "../../ExampleWrapper";
 
 function ItemsInput({ id, itemsLength }: { id: number; itemsLength: number }) {
   const [input, setInput] = useState("");
@@ -41,19 +42,19 @@ function ItemsInput({ id, itemsLength }: { id: number; itemsLength: number }) {
           value={input}
           required
           onChange={(e) => setInput(e.target.value)}
-          className="w-32 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+          className="w-32 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
         />
         ,
       </div>
 
       {inputEmpty && (
-        <div className="rounded-sm bg-red-400 px-2 py-1 text-base text-gray-950">
+        <div className="rounded-sm bg-rose-400 px-2 py-1 text-base text-gray-950">
           Can't be empty!
         </div>
       )}
 
       {inputOutOfRange && (
-        <div className="rounded-sm bg-red-400 px-2 py-1 text-base leading-5 text-gray-950">
+        <div className="rounded-sm bg-rose-400 px-2 py-1 text-base leading-5 text-gray-950">
           Must be from -10,000 to 10,000.
         </div>
       )}
@@ -202,7 +203,7 @@ export default function Splice() {
         <code>Infinity</code> as your <code>deleteCount</code> value.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-3">
+      <ExampleWrapper>
         <code>myNumberArray.splice(</code>
         <div className="flex items-baseline gap-x-1">
           <input
@@ -219,7 +220,7 @@ export default function Splice() {
               setStartInputValueValid(e.target.checkValidity());
               setStartInputValue(e.target.value);
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
@@ -240,14 +241,14 @@ export default function Splice() {
                 setDeleteCountInputValueValid(e.target.checkValidity());
                 setDeleteCountInputValue(e.target.value);
               }}
-              className="w-32 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+              className="w-32 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
             />
             ,
             <button
               className="hover:cursor-pointer"
               onClick={() => setInfinityTrue(!infinityTrue)}
             >
-              <ButtonWrapper disabled={false}>
+              <ButtonWrapper style='normal'>
                 {`${infinityTrue ? "Remove Infinity" : "Use Infinity"}`}
               </ButtonWrapper>
             </button>
@@ -255,11 +256,11 @@ export default function Splice() {
         )}
 
         <div className="mb-1 flex items-center gap-1">
-          <button 
-            type='button'
+          <button
+            type="button"
             onClick={() => {
-                setDeleteCountPresent(true);
-              }}
+              setDeleteCountPresent(true);
+            }}
           >
             <CiCirclePlus
               className={`shrink-0 text-4xl ${!deleteCountPresent ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
@@ -267,7 +268,7 @@ export default function Splice() {
           </button>
 
           <button
-            type='button'
+            type="button"
             onClick={() => {
               setDeleteCountPresent(false);
               setItemsLength(0);
@@ -302,19 +303,13 @@ export default function Splice() {
 
         {deleteCountPresent && (
           <div className="mb-1 flex items-center gap-1">
-            <button
-              type='button'
-              onClick={addItem}
-            >
+            <button type="button" onClick={addItem}>
               <CiCirclePlus
                 className={`shrink-0 text-4xl ${deleteCountPresent && itemsLength < 5 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
               />
             </button>
 
-            <button
-              type='button'
-              onClick={removeItem}
-            >
+            <button type="button" onClick={removeItem}>
               <CiCircleMinus
                 className={`shrink-0 text-4xl ${itemsLength > 0 ? "bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
               />
@@ -328,18 +323,18 @@ export default function Splice() {
           <code>)</code>
         </div>
 
-        <button type='button' onClick={spliceMyNumberArray} className="w-fit">
+        <button type="button" onClick={spliceMyNumberArray} className="w-fit">
           <ButtonWrapper
-            disabled={
+            style={
               !startInputValueValid ||
               !deleteCountInputValueValid ||
-              !formDataValid
+              !formDataValid ? 'disabled' : 'normal'
             }
           >
             Click here to splice it!
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue.length > 0 && (
         <>

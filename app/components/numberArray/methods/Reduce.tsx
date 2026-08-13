@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function Reduce() {
   const myNumberArray = useLoaderData();
@@ -24,13 +25,13 @@ export default function Reduce() {
         function as a parameter. This function will evaluate all elements in the
         array, returning a single value.
       </p>
-      <br />
+      
       <p>
         Let's say you wanted to get the sum of all elements in an array of
         numbers. Your reducer function would look like this:
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-2">
+      <ExampleWrapper>
         <div className="flex flex-wrap items-baseline leading-6">
           <code>function addAll</code>
           <code>(accumulator, currentValue){`{`}</code>
@@ -40,7 +41,7 @@ export default function Reduce() {
         </code>
         <code className="ml-3">return returnValue;</code>
         <code>{`}`}</code>
-      </div>
+      </ExampleWrapper>
 
       <p>
         By default, the initial value for <code>accumulator</code> will be the
@@ -50,20 +51,20 @@ export default function Reduce() {
         <code>accumulator</code> on the next runthrough, with{" "}
         <code>currentValue</code> becoming the next element in the array.
       </p>
-      <br />
+      
       <p>
         When the last element in the array is reached, the{" "}
         <code>.reduce()</code> function returns the last returned value of the
         provided callback function.
       </p>
 
-      <div className="my-2 flex flex-wrap items-baseline gap-2 rounded-sm bg-gray-950/75 p-2">
-        <div className="flex flex-wrap items-baseline leading-6">
+      <ExampleWrapper>
+        <div className="h-fit flex flex-wrap">
           <code>myNumberArray</code>
           <code>.reduce(addAll)</code>
         </div>
-        <p>returns:</p>
-      </div>
+      </ExampleWrapper>
+      <p>returns:</p>
 
       <div className="w-fit max-w-full overflow-x-scroll rounded-md bg-lime-950 px-2 py-1">
         <p className="text-2xl">{returnValue}</p>

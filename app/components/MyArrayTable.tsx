@@ -4,14 +4,14 @@ type MyArrayTableProps = {
 
 export default function MyArrayTable({ array }: MyArrayTableProps) {
   return (
-    <table className="w-fit min-w-80">
+    <table className="w-fit">
       <tbody className="border border-lime-900">
         <tr className="border-b border-b-lime-900">
-          <th className="bg-lime-950/50 px-2 py-1 text-lime-700">index:</th>
+          <th className="bg-lime-950/25 px-2 py-1 text-lime-600">index:</th>
 
           {array.length === 0 ? (
             <td
-              className="w-fit border-l border-l-lime-900 bg-lime-950/50 px-3 text-center"
+              className="w-fit border-l border-l-lime-900 bg-lime-950/50 px-3 text-center text-lime-500"
               rowSpan={2}
             >
               <code>myNumberArray</code> is empty!
@@ -31,7 +31,7 @@ export default function MyArrayTable({ array }: MyArrayTableProps) {
         </tr>
 
         <tr className="">
-          <th className="bg-lime-950/50 px-2 py-1 text-lime-700">value:</th>
+          <th className="bg-lime-950/25 px-2 py-1 text-lime-600">value:</th>
           {array.length === 0
             ? null
             : array.map((item, index) => {

@@ -3,9 +3,13 @@ import { Outlet } from "react-router";
 
 export default function App() {
   return (
-    <div className="p-4 flex flex-col gap-4 min-w-85">
+    <>
       <Header />
       <Outlet />
-    </div>
+      {/* footer grid */}
+      <div className="bg-slate-950" style={{ gridArea: "footer-left"}} />
+      <div className="bg-slate-950" style={{ gridArea: "footer"}} />
+      <div className="bg-slate-950" style={{ gridArea: "footer-right"}} />
+    </>
   );
 }

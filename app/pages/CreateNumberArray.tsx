@@ -1,15 +1,15 @@
-import { Form, Link } from "react-router";
-import { IoIosArrowBack } from "react-icons/io";
+import { Form } from "react-router";
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
 import { useEffect, useRef, useState } from "react";
 import ButtonWrapper from "../components/ButtonWrapper";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 type NumberInputProps = {
-  id: number;
+  number: number;
 };
 
-function NumberInput({ id }: NumberInputProps) {
+function TableRow({ number }: NumberInputProps) {
   const [input, setInput] = useState("");
   const [inputEmpty, setInputEmpty] = useState<boolean | undefined>(true);
   const [inputOutOfRange, setInputOutOfRange] = useState<boolean | undefined>(
@@ -33,32 +33,42 @@ function NumberInput({ id }: NumberInputProps) {
   }, []);
 
   return (
-    <div className="flex w-full items-center gap-2">
-      <input
-        ref={inputRef}
-        id={`numberInput-${id}`}
-        name={`numberInput-${id}`}
-        type="number"
-        min={-10000}
-        max={10000}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        required
-        className="w-35 rounded-sm bg-gray-50 px-2 py-1 text-2xl font-light text-lime-800 invalid:border-2 invalid:border-red-400 focus:outline-lime-700 xs:w-40"
-      />
+    <tr className="flex w-full divide-x divide-white/25 bg-slate-900">
+      <th
+        scope="row"
+        className="min-w-12 bg-slate-900 px-2 py-1 text-2xl font-light text-lime-200"
+      >
+        {number}.
+      </th>
+      <td className="w-full max-w-40 min-w-34 sm:w-40">
+        <input
+          ref={inputRef}
+          id={`row-${number}`}
+          name={`row-${number}`}
+          type="number"
+          min={-10000}
+          max={10000}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          required
+          className="h-full w-full bg-slate-100 px-2 py-1 text-2xl font-light text-lime-800 invalid:border-2 invalid:border-rose-500 focus-visible:z-10 focus-visible:outline-lime-700"
+        />
+      </td>
 
-      {inputEmpty && (
-        <div className="rounded-sm bg-red-400 px-2 py-1 text-sm/4.5 text-gray-950 xs:text-base">
-          Can't be empty!
-        </div>
-      )}
+      <td className="w-full max-w-40 sm:max-w-fit">
+        {inputEmpty && (
+          <td className="flex h-full w-full max-w-40 sm:w-40 items-center bg-rose-400 px-2 py-1 text-sm/4.5 text-gray-950">
+            Can't be empty!
+          </td>
+        )}
 
-      {inputOutOfRange && (
-        <div className="rounded-sm bg-red-400 px-2 py-1 text-sm/4.5 text-gray-950 xs:text-base">
-          Must be from -10,000 to 10,000.
-        </div>
-      )}
-    </div>
+        {inputOutOfRange && (
+          <div className="flex h-full w-full items-center bg-rose-400 px-2 py-1 text-sm/4.5 text-gray-950 sm:w-60">
+            Must be from -10,000 to 10,000.
+          </div>
+        )}
+      </td>
+    </tr>
   );
 }
 
@@ -86,73 +96,73 @@ export default function CreateNumberArray() {
   return (
     <>
       <title>myNumberArray | Create New</title>
-      <main className="flex flex-col gap-3 items-start w-full max-w-215 mx-auto sm:gap-4">
-        <Link
-          to="/"
-          className="flex items-center gap-1 text-lg text-lime-600"
-        >
-          <IoIosArrowBack />
-          Home
-        </Link>
+      <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
+      <main
+        className="flex w-full min-w-0 flex-col items-start divide-y divide-white/25 bg-slate-950 "
+        style={{ gridArea: "body" }}
+      >
+        <Breadcrumbs currentPage="Create new array" />
 
-        <div className="w-full rounded-md flex flex-col gap-3 bg-gray-800 p-4 xs:p-5 sm:px-8 sm:gap-5">
-          <h1 className="text-2xl font-light text-lime-300">
-            Add up to 10 numbers:
-          </h1>
+        <div className="flex w-full md:h-full md:border-b-0">
+          <div className="flex w-full flex-col gap-6 py-7 bg-slate-900 md:border-r md:border-white/25 ">
+            <h1 className="px-3 text-2xl font-light text-lime-300">
+              Add up to 10 numbers:
+            </h1>
 
-          <Form
-            ref={formRef}
-            onInput={() => {
-              setFormValid(formRef.current?.checkValidity());
-            }}
-            action="/number-array/create"
-            method="POST"
-            className="flex flex-col gap-3"
-          >
-            {Array.from({ length: itemsLength }, (_, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="w-9 text-2xl font-light text-lime-300">
-                  {i + 1}.
-                </span>
-                <NumberInput id={i + 1} />
-              </div>
-            ))}
+            <Form
+              ref={formRef}
+              onInput={() => {
+                setFormValid(formRef.current?.checkValidity());
+              }}
+              action="/number-array/create"
+              method="POST"
+              className=""
+            >
+              <table className="w-full sm:w-fit border-collapse border-spacing-px divide-y divide-white/25 border-y border-white/25 sm:border-r md:border-r-0 md:w-full">
+                {Array.from({ length: itemsLength }, (_, i) => (
+                  <TableRow number={i + 1} />
+                ))}
+              </table>
 
-            <div className="flex gap-1 sm:my-2">
-                <button 
-                  type='button'
+              <div className="flex gap-1 bg-slate-900 px-3 py-5">
+                <button
+                  type="button"
                   onClick={addItem}
                   disabled={itemsLength >= 10}
                 >
                   <CiCirclePlus
-                    className={`text-6xl ${itemsLength < 10 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+                    className={`text-6xl ${itemsLength < 10 ? "cursor-pointer bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
                   />
                 </button>
 
                 <button
-                  type='button'
+                  type="button"
                   onClick={removeItem}
                   disabled={itemsLength <= 0}
                 >
                   <CiCircleMinus
-                    className={`text-6xl ${itemsLength > 1 ? "bg-lime-950 text-lime-300 cursor-pointer" : "bg-gray-800 text-gray-400"} rounded-full`}
+                    className={`text-6xl ${itemsLength > 1 ? "cursor-pointer bg-lime-950 text-lime-300" : "bg-gray-800 text-gray-400"} rounded-full`}
                   />
                 </button>
-            </div>
+              </div>
 
-            <div className="w-fit">
-              <ButtonWrapper disabled={!formValid}>
-                <input
-                  type="submit"
-                  value="Create array!"
-                  disabled={!formValid}
-                  className="sm:text-lg"
-                />
-              </ButtonWrapper>
-            </div>
-          </Form>
+              <div className="max-w-53 bg-slate-900 px-3">
+                <ButtonWrapper style={!formValid ? "disabled" : "normal"}>
+                  <input
+                    type="submit"
+                    value="Create array!"
+                    disabled={!formValid}
+                    className="text-xl"
+                  />
+                </ButtonWrapper>
+              </div>
+            </Form>
+          </div>
+          <div className="hidden size-full md:block" />
         </div>
+        <div className="size-full sm:hidden" />
       </main>
+      <div className="bg-slate-950" style={{ gridArea: "body-right" }} />
     </>
   );
 }

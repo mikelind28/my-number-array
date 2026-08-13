@@ -1,9 +1,9 @@
-import MyArray from "../components/MyArrayTable";
-import { Link, useLoaderData } from "react-router";
+import MyArrayTable from "../components/MyArrayTable";
+import { useLoaderData } from "react-router";
 import DetailDisclosureView from "../components/numberArray/DetailDisclosureView";
-import { IoIosArrowBack } from "react-icons/io";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export default function NumberMethodsHome() {
   const myNumberArray = useLoaderData();
@@ -18,28 +18,27 @@ export default function NumberMethodsHome() {
   return (
     <>
       <title>myNumberArray | Methods</title>
-      <main className="flex flex-col gap-4 items-start w-full max-w-215 mx-auto">
-        <Link
-          to="/"
-          className="flex items-center gap-1 text-lg text-lime-600"
-        >
-          <IoIosArrowBack />
-          Home
-        </Link>
+      <div className="bg-slate-950" style={{ gridArea: "body-left" }} />
+      <main
+        className="min-w-0 flex flex-col items-start divide-y divide-white/25 bg-slate-950"
+        style={{ gridArea: "body" }}
+      >
+        <Breadcrumbs currentPage="Explore array methods" />
 
-        <motion.div 
+        <motion.div
           layout
-          style={{ position: scrollDirection === 'up' ? "sticky" : "static" }}
-          className={`top-2 z-20 flex h-full w-full flex-col gap-1 rounded-md border border-lime-400 bg-gray-800 p-4 text-lime-500 outline-5 outline-gray-900 xs:p-5 sm:px-8`}
+          style={{ position: scrollDirection === "up" ? "sticky" : "static" }}
+          className={`min-w-0 max-w-220 lg:border-r lg:border-white/25 top-0 z-20 flex w-full flex-col gap-3 bg-slate-900 p-3 pt-4 pb-7 text-lime-500`}
         >
-          <code className="text-lime-400">myNumberArray:</code>
+          <code className="text-xl text-lime-300">myNumberArray:</code>
           <div className="overflow-x-scroll">
-            <MyArray array={myNumberArray} />
+            <MyArrayTable array={myNumberArray} />
           </div>
         </motion.div>
 
         <DetailDisclosureView />
       </main>
+      <div className="bg-slate-950" style={{ gridArea: "body-right" }} />
     </>
   );
 }

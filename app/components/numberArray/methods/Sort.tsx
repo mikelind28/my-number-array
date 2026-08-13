@@ -2,6 +2,7 @@ import { useState } from "react";
 import ButtonWrapper from "../../ButtonWrapper";
 import { useLoaderData, useRevalidator } from "react-router";
 import MyArray from "../../MyArrayTable";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function Sort() {
   const myNumberArray = useLoaderData();
@@ -58,20 +59,20 @@ export default function Sort() {
         .
       </p>
 
-      <div className="my-2 rounded-sm bg-gray-950/75 p-2">
-        Click a button to modify <code>myNumberArray</code> and see the return
-        value!
+      <ExampleWrapper>
+        <p>Click a button to modify <code>myNumberArray</code> and see the return
+        value!</p>
         <button type='button' onClick={handleSortAscending} className="my-2 w-fit">
-          <ButtonWrapper disabled={false}>
+          <ButtonWrapper style='normal'>
             <code>{`myNumberArray.sort((a, b) => a - b)`}</code>
           </ButtonWrapper>
         </button>
         <button type='button' onClick={handleSortDescending} className="my-2 w-fit">
-          <ButtonWrapper disabled={false}>
+          <ButtonWrapper style='normal'>
             <code>{`myNumberArray.sort((a, b) => b - a)`}</code>
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue !== undefined && (
         <div className="overflow-x-scroll">

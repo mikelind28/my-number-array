@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MyArray from "../../MyArrayTable";
 import { useLoaderData } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function With() {
   const myNumberArray = useLoaderData();
@@ -23,7 +24,7 @@ export default function With() {
         with the specified <code>value</code>.
       </p>
 
-      <div className="my-2 flex flex-col gap-2 rounded-sm bg-gray-950/75 p-3">
+      <ExampleWrapper>
         <code>myNumberArray.with(</code>
         <div className="flex items-baseline gap-x-1">
           <input
@@ -39,7 +40,7 @@ export default function With() {
               setIndexInputValueValid(e.target.checkValidity());
               setIndexInputValue(e.target.value);
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
@@ -58,17 +59,17 @@ export default function With() {
               setValueInputValueValid(e.target.checkValidity());
               setValueInputValue(e.target.value);
             }}
-            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-red-500 focus:outline-lime-700"
+            className="w-20 rounded-xs bg-gray-100 px-2 py-1 text-gray-950 placeholder:text-sm invalid:border-2 invalid:border-rose-500 focus:outline-lime-700"
           />
           ,
         </div>
         <code>)</code>
-      </div>
+      </ExampleWrapper>
 
       <p className="mb-2">returns:</p>
 
       {!indexInputValueValid || !valueInputValueValid ? (
-        <div className="rounded-md bg-lime-950 px-2 py-1">
+        <div className="w-fit rounded-md bg-lime-950 px-2 py-1">
           <p className="text-2xl">undefined</p>
         </div>
       ) : (

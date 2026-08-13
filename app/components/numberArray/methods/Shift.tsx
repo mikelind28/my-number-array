@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ButtonWrapper from "../../ButtonWrapper";
 import { useLoaderData, useRevalidator } from "react-router";
+import ExampleWrapper from "../../ExampleWrapper";
 
 export default function Shift() {
   const myNumberArray = useLoaderData();
@@ -25,15 +26,15 @@ export default function Shift() {
         array.
       </p>
 
-      <div className="my-2 rounded-sm bg-gray-950/75 p-2">
-        Click the button to modify <code>myNumberArray</code> and see the return
-        value!
+      <ExampleWrapper>
+        <p>Click the button to modify <code>myNumberArray</code> and see the return
+        value!</p>
         <button type='button' onClick={handleShift} className="my-2 w-fit">
-          <ButtonWrapper disabled={false}>
+          <ButtonWrapper style='normal'>
             <code>myNumberArray.shift()</code>
           </ButtonWrapper>
         </button>
-      </div>
+      </ExampleWrapper>
 
       {returnValue !== undefined && (
         <>
